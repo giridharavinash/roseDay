@@ -1,62 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Rose Day 🌹</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: radial-gradient(circle at top, #ffb6c1, #8b0000);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <title>Happy Rose Day ❤️</title>
 
-    h1 {
-      color: white;
-      font-size: 3rem;
-      text-align: center;
-      z-index: 2;
-      animation: fadeIn 2s ease-in-out;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    }
+    <style>
+        body {
+          margin: 0;
+          font-family: 'Segoe UI', sans-serif;
+          background:
+            linear-gradient(rgba(139,0,0,0.75), rgba(255,182,193,0.85)),
+            url("bg.jpg") center / cover no-repeat fixed;
+          overflow-x: hidden;
+          color: white;
+          text-align: center;
+        }
 
-    .rose {
-      position: absolute;
-      bottom: -100px;
-      font-size: 3rem;
-      animation: floatUp 8s linear infinite;
-      opacity: 0.8;
-    }
+        h1 {
+          margin-top: 40px;
+          font-size: 3rem;
+          animation: fadeIn 2s ease-in;
+        }
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-      20% { opacity: 1; }
-      100% {
-        transform: translateY(-120vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+        h2 {
+          font-weight: 300;
+          margin-bottom: 30px;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+        .rose-watermark {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 18rem;
+          opacity: 0.08;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .content {
+          position: relative;
+          z-index: 2;
+        }
+
+        .rose {
+          position: fixed;
+          bottom: -100px;
+          font-size: 2.5rem;
+          animation: floatUp linear infinite;
+          opacity: 0.8;
+          z-index: 1;   /* 👈 ADD THIS */
+          pointer-events: none;
+        }
+
+
+
+        @keyframes floatUp {
+          0% { transform: translateY(0); opacity: 0; }
+          20% { opacity: 1; }
+          100% { transform: translateY(-120vh); opacity: 0; }
+        }
+
+        .memories {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 15px;
+          padding: 30px;
+        }
+
+        .memories img {
+          width: 100%;
+          border-radius: 15px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .message {
+          padding: 30px;
+          font-size: 1.2rem;
+          line-height: 1.6;
+          max-width: 700px;
+          margin: auto;
+        }
+
+        footer {
+          margin: 40px 0;
+          font-size: 1.1rem;
+          opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.9); }
+          to { opacity: 1; transform: scale(1); }
+        }
+    </style>
 </head>
+
 <body>
+<div class="rose-watermark">🌹</div>
+<div class="content">
+<h1>🌹 Happy Rose Day 🌹</h1>
+<h2>To <strong>❤️ AMBICA ❤️</strong><br>From <strong>AVINASH</strong></h2>
 
-  <h1>🌹 Happy Rose Day 🌹<br>May your life bloom with love</h1>
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
+<button id="playBtn" onclick="playMusic()">▶ Tap to Feel the Love</button>
+
+
+<style>
+    #playBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: none;
+      background: #ff4d6d;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 1000;
+    }
+</style>
+
+<script>
+    function playMusic() {
+      const music = document.getElementById("bgMusic");
+      music.play();
+      document.getElementById("playBtn").style.display = "none";
+    }
+</script>
+
+
+<div class="message">
+    Every rose reminds me of you 🌹<br><br>
+    Your smile, your laughter, our memories —
+    everything blooms brighter with you in my life.
+    Happy Rose Day, my love ❤️
+</div>
+
+<h2>📸 Our Beautiful Memories</h2>
+<div class="memories">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+</div>
+
+<footer>
+    Forever Yours ❤️
+</footer>
+
+<script>
     const roses = ["🌹","🌸","💐"];
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 30; i++) {
       const rose = document.createElement("div");
       rose.className = "rose";
       rose.innerText = roses[Math.floor(Math.random() * roses.length)];
@@ -64,7 +163,8 @@
       rose.style.animationDuration = (6 + Math.random() * 6) + "s";
       document.body.appendChild(rose);
     }
-  </script>
+</script>
 
+</div>
 </body>
 </html>
